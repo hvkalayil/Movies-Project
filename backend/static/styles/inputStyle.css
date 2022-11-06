@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .primary-bg{
+        @apply bg-primeA border-cyan-500
+    }
+    .secondary-bg{
+        @apply bg-white text-cyan-500
+    }
+
+    .primary-soft-gradient{
+        @apply bg-gradient-to-br from-white to-cyan-200
+    }
+
+    .card{
+        @apply flex flex-col p-4 py-6 m-4 rounded-xl font-medium text-xl text-center justify-center transition-transform hover:scale-110 duration-300 hover:primary-soft-gradient cursor-pointer
+    }
+
+    .head1{
+        @apply text-2xl font-semibold
+    }
+
+    .pill{
+        @apply p-2 px-4 mt-2 mr-2 rounded-full transition-transform hover:scale-105
+    }
+
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+.foot{
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+
+.loadingPill{
+    animation: loader 2s cubic-bezier(1, 0, 0, 1) infinite  ;
+}
+
+@keyframes loader {
+    0%{transform: rotate();}
+    50%{transform: rotate(360deg);}
+    100%{transform: rotate(-360deg);}
+}
+
+.docChip{
+    background: rgba(6,182,212,0.45171572046787467);
+}
+
+.GET{
+    background-color: #0288D1;
+}
+
+.POST{
+    background-color: #388E3C;
+}
+
+.DELETE{
+    background-color: #D32F2F;
+}
+
+.PUT, .PATCH{
+    background-color: #0097A7;
+}

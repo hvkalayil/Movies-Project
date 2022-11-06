@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "CRUD operations using file ingestion",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "tailwind": "npx tailwind -i static/styles/inputStyle.css -o static/styles/styles.css --watch",
+    "build": "esbuild index.js --platform=node --bundle --minify --outfile=build/index.js"
+  },
+  "author": "HVK",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.5",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.15.13",
+    "eslint": "^8.19.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.19",
+    "tailwindcss": "^3.1.6"
+  }
+}

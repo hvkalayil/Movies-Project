@@ -1,0 +1,54 @@
+
+<%- include('partials/header.ejs', {pageTitle:title}) %>
+
+<%- include('partials/banner.ejs', {showBack:false, title:'Welcome',backLink:''}) %>
+
+<section id="overview" class="container">
+    <div>
+        <div class="flex w-full px-4 pt-4">
+            <h1 class="head1">Overview</h1>
+        </div>
+        <div class="flex p-2 overflow-x-auto">
+            <div class="card bg-white text-cyan-400">
+                <%= total %>  Total Movies
+            </div>
+            <div class="card bg-white text-cyan-400">
+                <a href="/delete" onclick="startLoader(['overview'])" class="w-100 text-center transition-opacity text-rose-600 opacity-0 hover:opacity-100">Delete</a>
+                <%= duplicates %>  Duplicate Movies
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="documentation">
+    <div class="container">
+        <div class="flex w-full px-4 pt-4">
+            <h1 class="head1">API Documentation</h1>
+        </div>
+
+        <% for(let index = 0; index < doc.length; index++) { %> 
+        <div class="docChip w-11/12 m-4 p-4 rounded-xl">
+            <div class="flex flex-row items-center">
+                <div class="flex flex-col rounded text-center p-2 mr-2 <%= doc[index].type %> "> <%= doc[index].type %>  </div>
+                <a target="_blank" href="<%= doc[index].path %>" class="flex flex-col text-lg font-bold hover:underline"><%= doc[index].path %></a>
+            </div>
+            <div class="flex flex-col">
+                <span class="flex"><%= doc[index].description %></span>
+                
+                <% if (doc[index].params.length != 0) { %>
+                    <span class="flex">Parameters</span>
+                    <ul class="list-disc hover:list-decimal ml-8">
+                        <% for( let paramIndex = 0; paramIndex < doc[index].params.length; paramIndex++ ) { %>
+                            <li> <%= doc[index].params[paramIndex] %>  </li>
+                        <% } %>
+                    </ul>
+                <% } %>
+
+            </div>
+        </div>
+        <% } %> 
+
+    </div>    
+</section>
+
+<%- include('partials/loader.ejs') %> 

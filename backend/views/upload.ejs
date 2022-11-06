@@ -1,0 +1,56 @@
+<%- include('partials/header.ejs', {pageTitle:title}) %>
+
+<%- include('partials/banner.ejs', {showBack:true, title:'Upload JSON',backLink:'/'}) %>
+
+<section id="uploadForm" class="container m-auto">
+    <div>
+        <div class="flex w-full justify-center px-4 pt-4">
+            <h2 class="head1">Upload JSON File</h2>
+        </div>
+
+        <div class="flex w-full justify-center py-4">
+            <button class="secondary-bg p-2 font-semibold rounded-lg hover:primary-soft-gradient" onclick="document.getElementById('file').click();">Upload File</button>
+        </div>
+        <div class="flex w-full justify-center">
+            <form action="" method="post" id="fileForm" enctype="multipart/form-data">
+                <input type="file" name="jsonFile" id="file" style="visibility: hidden;" onchange="onUploadClick()">
+            </form>
+        </div>
+    </div>
+</section>
+
+<section id="previousUploads" class="container m-auto">
+    <div class="flex w-full justify-start px-2 py-2">
+        <h2 class="head1">Previous Uploads</h2>
+    </div>
+
+    <div class="h-auto overflow-visible">
+        <% for( let index = 0; index < uploadDetails.length; index++ ) { %>
+        
+        <div class="flex w-full justify-start px-2 py-2 pb-4 border-b-2 border-cyan-500 rounded-lg transition-transform">
+            <div class="flex flex-col w-1/12 my-2 mr-4 bg-gradient-to-br bg-cyan-500 text-white rounded-full justify-center items-center font-medium text-xl transition-transform">
+                <span> #<%= index+1 %>  </span>
+            </div>
+            <div class="flex flex-col">
+                <h4 class="flex font-normal"> Date: <%= uploadDetails[index]['UploadedOn'] %>  </h4>
+                <div class="flex w-full">
+                    <div class="flex flex-col pill bg-teal-600 text-white"> <%= uploadDetails[index]['CleanRecords'] %> OK</div>
+                    <div class="flex flex-col pill bg-rose-700 text-white"> <%= uploadDetails[index]['DirtyRecords'] %> Bad</div>
+                    <div class="flex flex-col pill bg-cyan-500 text-white"> <%= uploadDetails[index]['TotalRecords'] %> Total</div>
+                </div>
+            </div>
+        </div>
+
+        <% } %>
+    </div>
+
+</section>
+
+<%- include('partials/loader.ejs') %> 
+
+<script>
+    function onUploadClick() {
+        document.getElementById('fileForm').submit()
+        startLoader(['uploadForm','previousUploads','uploadForm'])
+    }
+</script>
